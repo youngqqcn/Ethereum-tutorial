@@ -9,7 +9,7 @@
 - build文件解析： 此文件主要用于编译安装使用
 - [cmd文件解析](/cmd.md)
   - [geth](/cmd-geth.md)
-- common文件：　此文件是提供系统的一些通用的工具集 (utils)
+- [common解析](common目录解析.md)　此文件是提供系统的一些通用的工具集 (utils)
 - [consensus文件解析](/consensus.md)
 - console文件解析：　Console is a JavaScript interpreted runtime environment.
 - contract文件： Package checkpointoracle is a an on-chain light client checkpoint oracle about contract.
