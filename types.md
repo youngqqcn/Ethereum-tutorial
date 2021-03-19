@@ -1,68 +1,81 @@
 # core/types
 ### core/types/block.go
 block data stucture:
-<pre><code>type Block struct {
+
+```go
+type Block struct {
+    // 指向 Header 结构（之后会详细说明），header 存储一个区块的基本信息
 	header       *Header
+    // 指向 Header 结构
 	uncles       []*Header
+    // 一组 transaction 结构
 	transactions Transactions
-	hash atomic.Value
+	// 当前区块的哈希值
+    hash atomic.Value
+    // 当前区块的大小
 	size atomic.Value
+
+    // 总的区块难度
+    // Td is used by package core to store the total difficulty
+	// of the chain up to and including the block.
 	td *big.Int
+
+    // 接收时间
 	ReceivedAt   time.Time
+    // 接收来源
 	ReceivedFrom interface{}
-}</code></pre>
-|字段	|描述|
-|--------|------------------------------|
-|header	 |指向 Header 结构（之后会详细说明），header 存储一个区块的基本信息。|
-|uncles	 |指向 Header 结构|
-|transactions|	一组 transaction 结构|
-|hash	|当前区块的哈希值|
-|size	|当前区块的大小|
-|td	|当前区块高度|
-|ReceivedAt|	接收时间|
-|ReceivedFrom|	来源|
+}
+```
 
 交易组成区块，一个一个区块以单向链表的形式连在一起组成区块链
-</br>Ｈｅａｄｅｒ data structure:
-<pre><code>type Header struct {
-	ParentHash  common.Hash    `json:"parentHash"       gencodec:"required"`
-	UncleHash   common.Hash    `json:"sha3Uncles"       gencodec:"required"`
-	Coinbase    common.Address `json:"miner"            gencodec:"required"`
-	Root        common.Hash    `json:"stateRoot"        gencodec:"required"`
-	TxHash      common.Hash    `json:"transactionsRoot" gencodec:"required"`
-	ReceiptHash common.Hash    `json:"receiptsRoot"     gencodec:"required"`
-	Bloom       Bloom          `json:"logsBloom"        gencodec:"required"`
-	Difficulty  *big.Int       `json:"difficulty"       gencodec:"required"`
-	Number      *big.Int       `json:"number"           gencodec:"required"`
-	GasLimit    uint64         `json:"gasLimit"         gencodec:"required"`
-	GasUsed     uint64         `json:"gasUsed"          gencodec:"required"`
-	Time        *big.Int       `json:"timestamp"        gencodec:"required"`
-	Extra       []byte         `json:"extraData"        gencodec:"required"`
-	MixDigest   common.Hash    `json:"mixHash"          gencodec:"required"`
-	Nonce       BlockNonce     `json:"nonce"            gencodec:"required"`
-}</code></pre>
-|字段|	描述|
-|--------|-------|
-|ParentHash|	父区块的哈希值|
-|UncleHash	|叔区块的哈希值|
-|Coinbase	|矿工得到奖励的账户，一般是矿工本地第一个账户|
-|Root	|表示当前所有用户状态|
-|TxHash	|本区块所有交易 Hash，即摘要|
-|ReceiptHash	|本区块所有收据 Hash，即摘要|
-|Bloom	|布隆过滤器，用来搜索收据|
-|Difficulty	|该区块难度，动态调整，与父区块和本区块挖矿时间有关。
-|Number	|该区块高度|
-|GasLimit	gas |用量上限，该数值根据父区块 gas 用量调节，如果 parentGasUsed > parentGasLimit * (2/3) ，则增大该数值，反之则减小该数值。|
-|GasUsed	|实际花费的 gas|
-|Time	|新区块的出块时间，严格来说是开始挖矿的时间|
-|Extra	|额外数据|
-|MixDigest|	混合哈希，与nonce 结合使用|
-|Nonce	|加密学中的概念|
-|ParentHash |表示该区块的父区块哈希，我们通过 ParentHash 这个字段将一个一个区块连接起来组成区块链，但实际上我们并不会直接将链整个的存起来，它是以一定的数据结构一块一块存放的，geth 的底层数据库用的是 LevelDB，这是一个 key-value 数据库，要得到父区块时，我们通过 ParentHash 以及其他字符串组成 key，在 LevelDB 中查询该 key 对应的值，就能拿到父区块。|
+Header data structure:
+
+```go 
+type Header struct {
+    // 父区块的哈希值
+	ParentHash  common.Hash
+    // 叔区块的哈希值
+	UncleHash   common.Hash
+    // 矿工得到奖励的账户，一般是矿工本地第一个账户
+    Coinbase    common.Address
+    // 表示当前所有用户状态
+    Root        common.Hash
+    // 本区块所有交易 Hash，即摘要
+	TxHash      common.Hash
+    // 本区块所有收据 Hash，即摘要
+    ReceiptHash common.Hash 
+    // 布隆过滤器，用来搜索收据
+    Bloom       Bloom
+    // 该区块难度，动态调整，与父区块和本区块挖矿时间有关。
+    Difficulty  *big.Int
+    // 该区块高度
+    Number      *big.Int
+    
+    // 用量上限，该数值根据父区块 gas 用量调节，
+    // 如果 parentGasUsed > parentGasLimit * (2/3) 
+    // 则增大该数值，反之则减小该数值。
+    GasLimit    uint64
+    // 实际花费的 gas
+    GasUsed     uint64
+    // 新区块的出块时间，严格来说是开始挖矿的时间
+    Time        *big.Int   
+    // 额外数据
+    Extra       []byte
+    // 混合哈希，与nonce 结合使用
+    MixDigest   common.Hash  
+    // 挖矿的nonce
+    Nonce       BlockNonce  
+}
+```
+
 
 ### core/types/transaction.go
-<pre><code>type Transaction struct {
-	data txdata
+
+```go 
+type Transaction struct {
+	data txdata    // Consensus contents of a transaction
+	time time.Time // Time first seen locally (spam avoidance)
+
 	// caches
 	hash atomic.Value
 	size atomic.Value
@@ -70,21 +83,99 @@ block data stucture:
 }
 
 type txdata struct {
-	AccountNonce uint64          `json:"nonce"    gencodec:"required"`
-	Price        *big.Int        `json:"gasPrice" gencodec:"required"`
-	GasLimit     uint64          `json:"gas"      gencodec:"required"`
-	Recipient    *common.Address `json:"to"       rlp:"nil"` // nil means contract creation
-	Amount       *big.Int        `json:"value"    gencodec:"required"`
-	Payload      []byte          `json:"input"    gencodec:"required"`
+	AccountNonce uint64   
+	Price        *big.Int 
+	GasLimit     uint64  
+	Recipient    *common.Address 
+	Amount       *big.Int 
+	Payload      []byte 
 
 	// Signature values
-	V *big.Int `json:"v" gencodec:"required"`
-	R *big.Int `json:"r" gencodec:"required"`
-	S *big.Int `json:"s" gencodec:"required"`
+	V *big.Int
+	R *big.Int 
+	S *big.Int 
 
 	// This is only used when marshaling to JSON.
-	Hash *common.Hash `json:"hash" rlp:"-"`
-}</code></pre>
-转账的定义中只有转入方，转出方的地址没有直接暴露,这是 Ethereum 的安全保护策略
+	Hash *common.Hash
+}
 
-每一笔转账都有独立的 Price 和 GasLimit
+```
+
+
+
+### core/types/receipt.go
+
+
+收据
+
+```go
+// Receipt represents the results of a transaction.
+type Receipt struct {
+	// Consensus fields: These fields are defined by the Yellow Paper
+	PostState         []byte 
+	Status            uint64 
+	CumulativeGasUsed uint64 
+	Bloom             Bloom  
+	Logs              []*Log 
+
+	// Implementation fields: These fields are added by geth when processing a transaction.
+	// They are stored in the chain database.
+	TxHash          common.Hash
+	ContractAddress common.Address
+	GasUsed         uint64
+
+	// Inclusion information: These fields provide information about the inclusion of the
+	// transaction corresponding to this receipt.
+	BlockHash        common.Hash 
+	BlockNumber      *big.Int
+	TransactionIndex uint
+}
+```
+
+
+
+
+### core/types/log.go
+
+```go
+// Log represents a contract log event. These events are generated by the LOG opcode and
+// stored/indexed by the node.
+type Log struct {
+	// Consensus fields:
+	// address of the contract that generated the event
+	Address common.Address 
+	
+    // list of topics provided by the contract.
+	Topics []common.Hash
+	
+    // supplied by the contract, usually ABI-encoded
+	Data []byte 
+
+	// Derived fields. These fields are filled in by the node
+	// but not secured by consensus.
+	// block in which the transaction was included
+	BlockNumber uint64 
+	
+    // hash of the transaction
+	TxHash common.Hash 
+	
+    // index of the transaction in the block
+	TxIndex uint
+	
+    // hash of the block in which the transaction was included
+	BlockHash common.Hash 
+	
+    // index of the log in the block
+	Index uint
+
+	// The Removed field is true if this log was reverted due to a chain reorganisation.
+	// You must pay attention to this field if you receive logs through a filter query.
+	Removed bool 
+}
+```
+
+
+- core/types/bloom9.go  布隆过滤器
+
+
+

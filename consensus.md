@@ -4,14 +4,14 @@ clique 主要涉及POA，用于测试网络； ethash主要涉及POW，用于主
 下图是consensus文件中各组件的关系图：
 ![image](./picture/Consensus-architecture.png)
 Engine接口定义了共识引擎需要实现的所有函数，实际上按功能可以划分为2类：
-- 区块验证类：以Verify开头，当收到新区块时，需要先验证区块的有效性
-- 区块盖章类：包括Prepare/Finalize/Seal等，用于最终生成有效区块（比如添加工作量证明）
-与区块验证相关联的还有2个外部接口：Processor用于执行交易，而Validator用于验证区块内容和状态。另外，由于需要访问以前的区块链数据，抽象出了一个ChainReader接口，BlockChain和HeaderChain都实现了该接口以完成对数据的访问。
+- 区块验证类：以`Verify`开头，当收到新区块时，需要先验证区块的有效性
+- 区块盖章类：包括`Prepare/Finalize/Seal`等，用于最终生成有效区块（比如添加工作量证明）
+与区块验证相关联的还有2个外部接口：`Processor`用于执行交易，而`Validator`用于验证区块内容和状态。另外，由于需要访问以前的区块链数据，抽象出了一个`ChainReader`接口，`BlockChain`和`HeaderChain`都实现了该接口以完成对数据的访问。
 
 ## 1.区块验证流程
 ![image](./picture/block-verification-process.png)
 Downloader收到新区块后会调用`BlockChain`的`InsertChain()`函数插入新区块。在插入之前需要先要验证区块的有效性，基本分为4个步骤：
-- 验证区块头：调用Ethash.VerifyHeaders()
+- 验证区块头：调用`Ethash.VerifyHeaders()`
 - 验证区块内容：调用`BlockValidator.VerifyBody()`（内部还会调用`Ethash.VerifyUncles()`）
 - 执行区块交易：调用`BlockProcessor.Process()`（基于其父块的世界状态）
 - 验证状态转换：调用`BlockValidator.ValidateState()`
@@ -2603,7 +2603,7 @@ ethash.mine()函数的实现，先看一些变量声明：
      nonce++
 ```
 
-hashimotoFull()函数内部会把hash和nonce拼在一起，计算出一个摘要（digest）和一个hash值（result）。如果hash值满足难度要求，挖矿成功，填充区块头的Nonce和MixDigest字段，然后调用block.WithSeal()生成盖过章的区块：
+`hashimotoFull()`函数内部会把`hash`和`nonce`拼在一起，计算出一个摘要（digest）和一个hash值（result）。如果hash值满足难度要求，挖矿成功，填充区块头的`Nonce`和`MixDigest`字段，然后调用`block.WithSeal()`生成盖过章的区块：
 
 ```go
 func (b *Block) WithSeal(header *Header) *Block {
@@ -2616,8 +2616,9 @@ func (b *Block) WithSeal(header *Header) *Block {
 }
 ```
 
-### 3.5 ethan/ethash.go
+### 3.5 ethash/ethash.go
 将此文件内容分为几个大块进行理解
+
 1)memoryMap块
 
 ```go
@@ -2635,12 +2636,15 @@ func memoryMapAndGenerate(path string, size uint64, lock bool, generator func(bu
 
 
 2）LRU块
+
 LRU 是一个cache的存储策略，此处主要是用于优化dataset和cache 中的存储数据方式
+
+
 3)cache块
+
 具体可以见文件中的注释，具体作用前面也已经说清楚,主要是cache的具体逻辑实现
 
 ```go
-
 // 在 consensus/ethash/ethash.go中，dataset 方法对数据集进行了封装。首先尝试从内存中取得，如果不存在则在文件目录中取得，如果还是不存在则通过 func (d *dataset) generate(dir string, limit int, test bool) 生成。具体来说，首先，我们计算 epoch，前面说到，每 30000 个区块就会换 DAG，这里的 30000 也就是 epochLength，也就是说 epoch 不变的的话，DAG 也不需要变。
 //
 //
@@ -2718,7 +2722,9 @@ func (lru *lru) get(epoch uint64) (item, future interface{}) {
 
 
 4)dataset块
+
 具体可以见文件中的注释，具体作用前面也已经说清楚，主要是函数的具体逻辑实现
+
 
 5)config块
 
