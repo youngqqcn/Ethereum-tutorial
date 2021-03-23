@@ -1,0 +1,501 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "Untitled",
+	"ownedElements": [
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAFF+qBWK6M3Z8Y=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Model",
+			"ownedElements": [
+				{
+					"_type": "UMLClassDiagram",
+					"_id": "AAAAAAFF+qBtyKM79qY=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Main",
+					"defaultDiagram": true,
+					"ownedViews": [
+						{
+							"_type": "UMLClassView",
+							"_id": "AAAAAAF4WA3NHGMTaqk=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"model": {
+								"$ref": "AAAAAAF4WA3NHGMRrzg="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAF4WA3NHGMU+QE=",
+									"_parent": {
+										"$ref": "AAAAAAF4WA3NHGMTaqk="
+									},
+									"model": {
+										"$ref": "AAAAAAF4WA3NHGMRrzg="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF4WA3NHGMVFmM=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHGMU+QE="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 560,
+											"top": -496,
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF4WA3NHGMWUEY=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHGMU+QE="
+											},
+											"font": "Arial;13;1",
+											"left": 613,
+											"top": 223,
+											"width": 319,
+											"height": 13,
+											"text": "Ethereum"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF4WA3NHWMXmKY=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHGMU+QE="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 560,
+											"top": -496,
+											"width": 73.67724609375,
+											"height": 13,
+											"text": "(from Model)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF4WA3NHWMYLvk=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHGMU+QE="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 560,
+											"top": -496,
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 608,
+									"top": 216,
+									"width": 329,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAF4WA3NHGMVFmM="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAF4WA3NHGMWUEY="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAF4WA3NHWMXmKY="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAF4WA3NHWMYLvk="
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "AAAAAAF4WA3NHWMZTx0=",
+									"_parent": {
+										"$ref": "AAAAAAF4WA3NHGMTaqk="
+									},
+									"model": {
+										"$ref": "AAAAAAF4WA3NHGMRrzg="
+									},
+									"subViews": [
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF4WBLLMWNt/uQ=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHWMZTx0="
+											},
+											"model": {
+												"$ref": "AAAAAAF4WBLLDmNqX38="
+											},
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 246,
+											"width": 319,
+											"height": 13,
+											"text": "-blockchain: *core.BlockChain",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF4WBL07WN0fyQ=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHWMZTx0="
+											},
+											"model": {
+												"$ref": "AAAAAAF4WBL03GNx1GA="
+											},
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 261,
+											"width": 319,
+											"height": 13,
+											"text": "-txPool: *core.TxPool",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF4WBOUE2OAezs=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHWMZTx0="
+											},
+											"model": {
+												"$ref": "AAAAAAF4WBOUA2N9lxQ="
+											},
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 276,
+											"width": 319,
+											"height": 13,
+											"text": "-handler: *handler",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF4WBQL12OKHoQ=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHWMZTx0="
+											},
+											"model": {
+												"$ref": "AAAAAAF4WBQLxWOHjpI="
+											},
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 291,
+											"width": 319,
+											"height": 13,
+											"text": "-chainDb: ethdb.Database",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF4WBQXnWOQIQ8=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHWMZTx0="
+											},
+											"model": {
+												"$ref": "AAAAAAF4WBQXi2ONKeo="
+											},
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 306,
+											"width": 319,
+											"height": 13,
+											"text": "-engine: consensus.Engine",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF4WBQcGmOW2RE=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHWMZTx0="
+											},
+											"model": {
+												"$ref": "AAAAAAF4WBQcC2OT0Vw="
+											},
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 321,
+											"width": 319,
+											"height": 13,
+											"text": "-accountManager: *accounts.Manager",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF4WBQgUWOcI9E=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHWMZTx0="
+											},
+											"model": {
+												"$ref": "AAAAAAF4WBQgQ2OZ+qQ="
+											},
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 336,
+											"width": 319,
+											"height": 13,
+											"text": "+APIBackend: *EthAPIBackend",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF4WBQks2Oifu0=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHWMZTx0="
+											},
+											"model": {
+												"$ref": "AAAAAAF4WBQko2OfDqE="
+											},
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 351,
+											"width": 319,
+											"height": 13,
+											"text": "-miner: *miner.Miner",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF4WBQnxGOoX/Q=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHWMZTx0="
+											},
+											"model": {
+												"$ref": "AAAAAAF4WBQns2OlrH0="
+											},
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 366,
+											"width": 319,
+											"height": 13,
+											"text": "-netRPCService: *ethapi.PublicNetAPI",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF4WBQqmmOuJBs=",
+											"_parent": {
+												"$ref": "AAAAAAF4WA3NHWMZTx0="
+											},
+											"model": {
+												"$ref": "AAAAAAF4WBQqi2OrzS8="
+											},
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 381,
+											"width": 319,
+											"height": 13,
+											"text": "-p2pServer: *p2p.Server",
+											"horizontalAlignment": 0
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 608,
+									"top": 241,
+									"width": 329,
+									"height": 158
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "AAAAAAF4WA3NHWMa5PI=",
+									"_parent": {
+										"$ref": "AAAAAAF4WA3NHGMTaqk="
+									},
+									"model": {
+										"$ref": "AAAAAAF4WA3NHGMRrzg="
+									},
+									"font": "Arial;13;0",
+									"left": 608,
+									"top": 399,
+									"width": 329,
+									"height": 10
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "AAAAAAF4WA3NHWMbWRk=",
+									"_parent": {
+										"$ref": "AAAAAAF4WA3NHGMTaqk="
+									},
+									"model": {
+										"$ref": "AAAAAAF4WA3NHGMRrzg="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 280,
+									"top": -248,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "AAAAAAF4WA3NHWMcYRs=",
+									"_parent": {
+										"$ref": "AAAAAAF4WA3NHGMTaqk="
+									},
+									"model": {
+										"$ref": "AAAAAAF4WA3NHGMRrzg="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 280,
+									"top": -248,
+									"width": 10,
+									"height": 10
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 608,
+							"top": 216,
+							"width": 329,
+							"height": 249,
+							"nameCompartment": {
+								"$ref": "AAAAAAF4WA3NHGMU+QE="
+							},
+							"attributeCompartment": {
+								"$ref": "AAAAAAF4WA3NHWMZTx0="
+							},
+							"operationCompartment": {
+								"$ref": "AAAAAAF4WA3NHWMa5PI="
+							},
+							"receptionCompartment": {
+								"$ref": "AAAAAAF4WA3NHWMbWRk="
+							},
+							"templateParameterCompartment": {
+								"$ref": "AAAAAAF4WA3NHWMcYRs="
+							}
+						}
+					]
+				},
+				{
+					"_type": "UMLInterface",
+					"_id": "AAAAAAF4WA28sGLnvXY=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Interface1"
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAF4WA3NHGMRrzg=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Ethereum",
+					"attributes": [
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF4WBLLDmNqX38=",
+							"_parent": {
+								"$ref": "AAAAAAF4WA3NHGMRrzg="
+							},
+							"name": "blockchain",
+							"visibility": "private",
+							"type": "*core.BlockChain"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF4WBL03GNx1GA=",
+							"_parent": {
+								"$ref": "AAAAAAF4WA3NHGMRrzg="
+							},
+							"name": "txPool",
+							"visibility": "private",
+							"type": "*core.TxPool"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF4WBOUA2N9lxQ=",
+							"_parent": {
+								"$ref": "AAAAAAF4WA3NHGMRrzg="
+							},
+							"name": "handler",
+							"visibility": "private",
+							"type": "*handler"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF4WBQLxWOHjpI=",
+							"_parent": {
+								"$ref": "AAAAAAF4WA3NHGMRrzg="
+							},
+							"name": "chainDb",
+							"visibility": "private",
+							"type": "ethdb.Database"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF4WBQXi2ONKeo=",
+							"_parent": {
+								"$ref": "AAAAAAF4WA3NHGMRrzg="
+							},
+							"name": "engine",
+							"visibility": "private",
+							"type": "consensus.Engine"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF4WBQcC2OT0Vw=",
+							"_parent": {
+								"$ref": "AAAAAAF4WA3NHGMRrzg="
+							},
+							"name": "accountManager",
+							"visibility": "private",
+							"type": "*accounts.Manager"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF4WBQgQ2OZ+qQ=",
+							"_parent": {
+								"$ref": "AAAAAAF4WA3NHGMRrzg="
+							},
+							"name": "APIBackend",
+							"type": "*EthAPIBackend"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF4WBQko2OfDqE=",
+							"_parent": {
+								"$ref": "AAAAAAF4WA3NHGMRrzg="
+							},
+							"name": "miner",
+							"visibility": "private",
+							"type": "*miner.Miner"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF4WBQns2OlrH0=",
+							"_parent": {
+								"$ref": "AAAAAAF4WA3NHGMRrzg="
+							},
+							"name": "netRPCService",
+							"visibility": "private",
+							"type": "*ethapi.PublicNetAPI"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF4WBQqi2OrzS8=",
+							"_parent": {
+								"$ref": "AAAAAAF4WA3NHGMRrzg="
+							},
+							"name": "p2pServer",
+							"visibility": "private",
+							"type": "*p2p.Server"
+						}
+					]
+				},
+				{
+					"_type": "UMLArtifactInstance",
+					"_id": "AAAAAAF4WA5rfGM6WPs=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "ArtifactInstance1"
+				}
+			]
+		}
+	]
+}
