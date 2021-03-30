@@ -29,7 +29,7 @@
 		- [虚拟机堆栈和内存数据结构分析](/core-vm-stack-memory源码分析.md)
 		- [虚拟机指令,跳转表,解释器源码分析](/core-vm-jumptable-instruction.md)
 		- [虚拟机源码分析](/core-vm源码分析.md)
-- crypto文件： 整个system涉及的有关密码学的configuration
+- [crypto文件](crypto解析.md)： 整个system涉及的有关密码学的configuration
 - Dashboard: The dashboard is a data visualizer integrated into geth, intended to collect and visualize useful information of an Ethereum node. It consists of two parts: 1) The client visualizes the collected data. 2) The server collects the data, and updates the clients.
 - [eth源码分析](/eth源码分析.md)
 - [ethdb源码分析](/ethdb源码分析.md)

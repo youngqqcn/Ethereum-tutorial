@@ -17,44 +17,54 @@
 - 机器码长度为32字节。
 - 没有重用 Java，或其他一些 Lisp 方言，Lua 的虚拟机，自定义虚拟机。
 - 使用可变的可扩展内存大小。
-- 限制调用深度为 1024。
+- 限制栈深度为 1024。
 - 没有类型。
 
 ## 3. 原理
 通常智能合约的开发流程是使用 solidity 编写逻辑代码，通过编译器编译成 bytecode，然后发布到以太坊上，以太坊底层通过 EVM 模块支持合约的执行和调用，调用时根据合约地址获取到代码，即合约的字节码，生成环境后载入到 EVM 执行。
 
 大致流程如下图1，指令的执行过程如下图2，从 EVM code 中不断取出指令执行，利用 Gas 来实现限制循环，利用栈来进行操作，内存存储临时变量，账户状态中的 storage 用来存储数据。
-![image](https://github.com/Billy1900/Ethereum-tutorial/blob/master/picture/EVM-1.jpg)
-![image](https://github.com/Billy1900/Ethereum-tutorial/blob/master/picture/EVM-2.png)
+![image](./picture/EVM-1.jpg)
+![image](./picture/EVM-2.png)
 
 ## 4. 代码结构
 EVM 模块的文件比较多，这里先给出每个文件的简述，先对每个文件提供的功能有个简单的了解。
-<pre><code>
-├── analysis.go            // 跳转目标判定
+
+```
+vm
+├── analysis.go             // 跳转目标判定
+├── analysis_test.go
 ├── common.go
-├── contract.go            // 合约的数据结构
-├── contracts.go           // 预编译好的合约
+├── contract.go             // 合约的数据结构
+├── contracts.go            // 预编译好的合约
+├── contracts_test.go
+├── doc.go
+├── eips.go
 ├── errors.go
-├── evm.go                 // 对外提供的接口   
-├── gas.go                 // 用来计算指令耗费的 gas
-├── gas_table.go           // 指令耗费计算函数表
-├── gen_structlog.go       
-├── instructions.go        // 指令操作
-├── interface.go           // 定义 StateDB 的接口
-├── interpreter.go         // 解释器
-├── intpool.go             // 存放大整数
-├── int_pool_verifier_empty.go
-├── int_pool_verifier.go
+├── evm.go                  // 对外提供的接口
+├── gas.go                  // 用来计算指令耗费的 gas
+├── gas_table.go            // 指令耗费计算函数表
+├── gas_table_test.go
+├── gen_structlog.go
+├── instructions.go         // 指令操作
+├── instructions_test.go
+├── interface.go            // 定义 StateDB 的接口
+├── interpreter.go          // 解释器
 ├── jump_table.go           // 指令和指令操作（操作，花费，验证）对应表
 ├── logger.go               // 状态日志
+├── logger_json.go
+├── logger_test.go
 ├── memory.go               // EVM 内存
 ├── memory_table.go         // EVM 内存操作表，用来衡量操作所需内存大小
-├── noop.go
-├── opcodes.go              // 指令以及一些对应关系     
+├── opcodes.go              // 指令以及一些对应关系
+├── operations_acl.go
 ├── runtime
-│   ├── env.go              // 执行环境 
-│   ├── fuzz.go
-│   └── runtime.go          // 运行接口，测试使用
+|    ├── doc.go
+|    ├── env.go                  // 执行环境 
+|    ├── runtime_example_test.go
+|    ├── runtime.go              // 运行接口，测试使用
+|    └── runtime_test.go    
 ├── stack.go                // 栈
-└── stack_table.go          // 栈验证</code></pre>
-
+├── stack_table.go          // 栈验证
+└── testdata
+```
