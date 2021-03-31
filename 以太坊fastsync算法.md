@@ -48,7 +48,7 @@ The historical block-processing based synchronization mechanism has two (approxi
 
 However, we can notice an interesting phenomenon during header verification. With a negligible probability of error, we can still guarantee the validity of the chain, only by verifying every K-th header, instead of each and every one. By selecting a single header at random out of every K headers to verify, we guarantee the validity of an N-length chain with the probability of (1/K)^(N/K) (i.e. we have 1/K chance to spot a forgery in K blocks, a verification that's repeated N/K times).
 
-但是，我们可以在区块头验证期间注意到一个有趣的现象 由于错误概率可以忽略不计，我们仍然可以保证链的有效性，只需要验证每个第K个头，而不是每个头。 通过从每个K头中随机选择一个头来验证，我们保证N长度链的可能会被伪造的概率为（1 / K）^（N / K）（在K块中我们有1 / K的机会发现一个伪造，而验证经行了N/K次。）。
+但是，我们可以在区块头验证期间注意到一个有趣的现象 由于错误概率可以忽略不计，我们仍然可以保证链的有效性，只需要验证每个第K个头，而不是每个头。 通过从每个K头中随机选择一个头来验证，我们保证N长度链的可能会被伪造的概率为（1 / K）^（N / K）（在K块中我们有1 / K的机会发现一个伪造，而验证重复了N/K次。）。
 
 Let's define the negligible probability Pn as the probability of obtaining a 256 bit SHA3 collision (i.e. the hash Ethereum is built upon): 1/2^128. To honor the Ethereum security requirements, we need to choose the minimum chain length N (below which we veriy every header) and maximum K verification batch size such as (1/K)^(N/K) <= Pn holds. Calculating this for various {N, K} pairs is pretty straighforward, a simple and lenient solution being http://play.golang.org/p/B-8sX_6Dq0.
 
@@ -74,7 +74,7 @@ Using this caveat however would mean, that the pivot point can be considered sec
 
 With this caveat calculated, the fast sync should be modified so that up to the pivoting point - X, only every K=100-th header should be verified (at random), after which all headers up to pivot point + X should be fully verified before starting state database downloading. Note: if a sync fails due to header verification the last N headers must be discarded as they cannot be trusted enough.
 
-通过计算caveat，快速同步需要修改为pivoting point - X,每隔100个区块头随机挑选其中的一个来进行验证，之后的每一个块都需要在状态数据库下载完成之后完全验证，如果因为区块头验证失败导致的同步失败，那么最后的N个区块头都需要被丢弃，应为他们达不到信任标准。
+通过计算caveat，快速同步需要修改为pivoting point - X,每隔100个区块头随机挑选其中的一个来进行验证，之后的每一个块都需要在状态数据库下载完成之后完全验证，如果因为区块头验证失败导致的同步失败，那么最后的N个区块头都需要被丢弃，因为他们达不到信任标准。
 
 
 ## 缺点 Weakness
