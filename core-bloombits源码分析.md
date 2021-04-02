@@ -1,3 +1,7 @@
+
+此部分可以和 [eth-bloombits和filter源码分析.md](eth-bloombits和filter源码分析.md)一起看
+
+
 # scheduler.go
 
 scheduler是基于section的布隆过滤器的单个bit值检索的调度。 除了调度检索操作之外，这个结构还可以对请求进行重复数据删除并缓存结果，从而即使在复杂的过滤情况下也可以将网络/数据库开销降至最低
