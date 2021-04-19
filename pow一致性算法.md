@@ -1,4 +1,9 @@
 ## eth POW分析
+
+
+可以结合这篇文章对Ethash算法进行详细分析: https://learnblockchain.cn/article/906
+
+
 本文主要内容在consensus中已经有提及，主要是将整个过程再梳理一遍，是miner与consensus的结合
 ### 1. 共识引擎描述
 在CPU挖矿部分，CpuAgent的mine函数，执行挖矿操作的时候调用了self.engine.Seal函数。这里的engine是就是共识引擎。Seal为其中很重要的一个接口。它实现了nonce值的寻找和hash的计算。并且该函数是保证共识并且不能伪造的一个重要的函数。
